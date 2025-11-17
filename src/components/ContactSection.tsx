@@ -45,7 +45,7 @@ export function ContactSection() {
                   <div>
                     <div className="text-gray-900">Địa Chỉ</div>
                     <p className="text-sm text-gray-600">
-                      123 Đường Lê Lợi, Quận 1, TP. Hồ Chí Minh
+                      Thôn An Tiên, Xuân Giang, Nghi Xuân, Hà Tĩnh
                     </p>
                   </div>
                 </div>
@@ -56,8 +56,8 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="text-gray-900">Số Điện Thoại</div>
-                    <p className="text-sm text-gray-600">0123 456 789</p>
-                    <p className="text-sm text-gray-600">0987 654 321</p>
+                    <p className="text-sm text-gray-600">0988 348 300</p>
+                    <p className="text-sm text-gray-600">0799 076 901</p>
                   </div>
                 </div>
 
@@ -67,8 +67,8 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="text-gray-900">Email</div>
-                    <p className="text-sm text-gray-600">info@mocan.vn</p>
-                    <p className="text-sm text-gray-600">support@mocan.vn</p>
+                    <p className="text-sm text-gray-600">info@mocan.hongducct.id.vn</p>
+                    <p className="text-sm text-gray-600">support@mocan.hongducct.id.vn</p>
                   </div>
                 </div>
 
