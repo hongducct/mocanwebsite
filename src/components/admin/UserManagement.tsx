@@ -93,18 +93,18 @@ export function UserManagement({ users, setUsers }: UserManagementProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-gray-900 mb-2">Quản Lý Người Dùng</h1>
-          <p className="text-gray-600">Quản lý thông tin và phân quyền người dùng</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Quản Lý Người Dùng</h1>
+          <p className="text-sm sm:text-base text-gray-600">Quản lý thông tin và phân quyền người dùng</p>
         </div>
-        <div className="flex gap-2">
-          <Button onClick={exportToExcel} variant="outline" className="border-green-600 text-green-600">
+        <div className="flex lg:flex-col sm:flex-row gap-2 sm:w-auto">
+          <Button onClick={exportToExcel} variant="outline" className="border-green-600 text-green-600 text-sm sm:text-base sm:w-auto">
             <FileSpreadsheet className="w-4 h-4 mr-2" />
             Xuất Excel
           </Button>
-          <Button onClick={() => handleOpenDialog()} className="bg-green-600 hover:bg-green-700">
+          <Button onClick={() => handleOpenDialog()} className="bg-green-600 hover:bg-green-700 text-sm sm:text-base sm:w-auto">
             <Plus className="w-4 h-4 mr-2" />
             Thêm Người Dùng
           </Button>
@@ -112,74 +112,74 @@ export function UserManagement({ users, setUsers }: UserManagementProps) {
       </div>
 
       {/* Search */}
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+      <div className="bg-white p-3 sm:p-4 rounded-xl shadow-sm border border-gray-100">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
           <Input
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Tìm kiếm theo tên hoặc email..."
-            className="pl-10"
+            className="pl-10 sm:pl-10 text-sm"
           />
         </div>
       </div>
 
       {/* Users Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <table className="w-full">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+        <table className="w-full min-w-[640px]">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-gray-900">Người Dùng</th>
-              <th className="px-6 py-3 text-left text-gray-900">Email</th>
-              <th className="px-6 py-3 text-left text-gray-900">Vai Trò</th>
-              <th className="px-6 py-3 text-left text-gray-900">Ngày Tạo</th>
-              <th className="px-6 py-3 text-left text-gray-900">Trạng Thái</th>
-              <th className="px-6 py-3 text-right text-gray-900">Thao Tác</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Người Dùng</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Email</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Vai Trò</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Ngày Tạo</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Trạng Thái</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-right text-xs sm:text-sm font-semibold text-gray-900">Thao Tác</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {filteredUsers.map((user) => (
               <tr key={user.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                      <span className="text-green-600">{user.name.charAt(0)}</span>
+                <td className="px-3 sm:px-6 py-3 sm:py-4">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs sm:text-sm text-green-600 font-medium">{user.name.charAt(0)}</span>
                     </div>
-                    <div className="text-gray-900">{user.name}</div>
+                    <div className="text-xs sm:text-sm font-medium text-gray-900 truncate">{user.name}</div>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-gray-600">{user.email}</td>
-                <td className="px-6 py-4">
-                  <Badge className={getRoleBadgeColor(user.role)}>{user.role}</Badge>
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-gray-600 break-all">{user.email}</td>
+                <td className="px-3 sm:px-6 py-3 sm:py-4">
+                  <Badge className={`${getRoleBadgeColor(user.role)} text-xs`}>{user.role}</Badge>
                 </td>
-                <td className="px-6 py-4 text-gray-600">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-gray-600">
                   {user.createdAt.toLocaleDateString('vi-VN')}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 sm:px-6 py-3 sm:py-4">
                   {user.status === 'active' ? (
-                    <div className="flex items-center gap-2 text-green-600">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>Hoạt động</span>
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-green-600">
+                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="text-xs sm:text-sm">Hoạt động</span>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-2 text-red-600">
-                      <XCircle className="w-4 h-4" />
-                      <span>Không hoạt động</span>
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-red-600">
+                      <XCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="text-xs sm:text-sm">Không hoạt động</span>
                     </div>
                   )}
                 </td>
-                <td className="px-6 py-4 text-right">
-                  <div className="flex items-center justify-end gap-2">
-                    <Button variant="outline" size="sm" onClick={() => handleOpenDialog(user)}>
-                      <Pencil className="w-4 h-4" />
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right">
+                  <div className="flex items-center justify-end gap-1 sm:gap-2">
+                    <Button variant="outline" size="sm" onClick={() => handleOpenDialog(user)} className="h-8 w-8 sm:h-9 sm:w-9 p-0">
+                      <Pencil className="w-3 h-3 sm:w-4 sm:h-4" />
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleDelete(user.id)}
-                      className="text-red-600 hover:bg-red-50"
+                      className="text-red-600 hover:bg-red-50 h-8 w-8 sm:h-9 sm:w-9 p-0"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                     </Button>
                   </div>
                 </td>

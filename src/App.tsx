@@ -184,7 +184,7 @@ export default function App() {
         <>
           <HeroSection />
           {featuredProduct && <FeaturedProduct product={featuredProduct} />}
-          <div className="container mx-auto px-4 py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
             <ProductGrid products={products} limit={6} showViewAll onViewAll={() => setCurrentView('products')} />
           </div>
           <ContactSection />
@@ -192,7 +192,7 @@ export default function App() {
       )}
 
       {currentView === 'products' && (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <ProductGrid products={products} />
         </div>
       )}
@@ -207,7 +207,7 @@ export default function App() {
       )}
 
       {currentView === 'contact' && (
-        <div className="py-12">
+        <div className="py-8 sm:py-12">
           <ContactSection />
         </div>
       )}

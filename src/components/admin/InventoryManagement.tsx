@@ -117,18 +117,18 @@ export function InventoryManagement({ products, setProducts }: InventoryManageme
     .reduce((sum, t) => sum + (t.quantity * t.price), 0);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-gray-900 mb-2">Quản Lý Nhập/Xuất Hàng</h1>
-          <p className="text-gray-600">Theo dõi và quản lý kho hàng</p>
+          <h1 className="text-xl sm:text-2xl lg:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Quản Lý Nhập/Xuất Hàng</h1>
+          <p className="text-sm sm:text-base lg:text-base text-gray-600">Theo dõi và quản lý kho hàng</p>
         </div>
-        <div className="flex gap-2">
-          <Button onClick={exportToExcel} variant="outline" className="border-green-600 text-green-600">
+        <div className="flex lg:flex-col sm:flex-row gap-2 sm:w-auto">
+          <Button onClick={exportToExcel} variant="outline" className="border-green-600 text-green-600 text-sm sm:text-base sm:w-auto">
             <FileSpreadsheet className="w-4 h-4 mr-2" />
             Xuất Excel
           </Button>
-          <Button onClick={() => setIsDialogOpen(true)} className="bg-green-600 hover:bg-green-700">
+          <Button onClick={() => setIsDialogOpen(true)} className="bg-green-600 hover:bg-green-700 text-sm sm:text-base sm:w-auto">
             <Plus className="w-4 h-4 mr-2" />
             Thêm Giao Dịch
           </Button>
@@ -136,86 +136,86 @@ export function InventoryManagement({ products, setProducts }: InventoryManageme
       </div>
 
       {/* Statistics */}
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-green-100 rounded-lg">
-              <ArrowUpCircle className="w-6 h-6 text-green-600" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <div className="p-2 sm:p-3 bg-green-100 rounded-lg">
+              <ArrowUpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
             </div>
           </div>
-          <div className="text-2xl text-gray-900 mb-1">
+          <div className="text-xl sm:text-2xl lg:text-2xl font-bold text-gray-900 mb-1">
             {(totalImport / 1000000).toFixed(1)}M
           </div>
-          <div className="text-sm text-gray-500">Tổng Nhập Hàng</div>
+          <div className="text-xs sm:text-sm lg:text-sm text-gray-500">Tổng Nhập Hàng</div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-red-100 rounded-lg">
-              <ArrowDownCircle className="w-6 h-6 text-red-600" />
+        <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <div className="p-2 sm:p-3 bg-red-100 rounded-lg">
+              <ArrowDownCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
             </div>
           </div>
-          <div className="text-2xl text-gray-900 mb-1">
+          <div className="text-xl sm:text-2xl lg:text-2xl font-bold text-gray-900 mb-1">
             {(totalExport / 1000000).toFixed(1)}M
           </div>
-          <div className="text-sm text-gray-500">Tổng Xuất Hàng</div>
+          <div className="text-xs sm:text-sm lg:text-sm text-gray-500">Tổng Xuất Hàng</div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <Calendar className="w-6 h-6 text-blue-600" />
+        <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 sm:col-span-2 lg:col-span-1">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <div className="p-2 sm:p-3 bg-blue-100 rounded-lg">
+              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
             </div>
           </div>
-          <div className="text-2xl text-gray-900 mb-1">
+          <div className="text-xl sm:text-2xl lg:text-2xl font-bold text-gray-900 mb-1">
             {transactions.length}
           </div>
-          <div className="text-sm text-gray-500">Tổng Giao Dịch</div>
+          <div className="text-xs sm:text-sm lg:text-sm text-gray-500">Tổng Giao Dịch</div>
         </div>
       </div>
 
       {/* Transactions Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <table className="w-full">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+        <table className="w-full min-w-[800px]">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-gray-900">Ngày</th>
-              <th className="px-6 py-3 text-left text-gray-900">Sản Phẩm</th>
-              <th className="px-6 py-3 text-left text-gray-900">Loại</th>
-              <th className="px-6 py-3 text-left text-gray-900">Số Lượng</th>
-              <th className="px-6 py-3 text-left text-gray-900">Đơn Giá</th>
-              <th className="px-6 py-3 text-left text-gray-900">Thành Tiền</th>
-              <th className="px-6 py-3 text-left text-gray-900">Ghi Chú</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm lg:text-sm font-semibold text-gray-900">Ngày</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm lg:text-sm font-semibold text-gray-900">Sản Phẩm</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm lg:text-sm font-semibold text-gray-900">Loại</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm lg:text-sm font-semibold text-gray-900">Số Lượng</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm lg:text-sm font-semibold text-gray-900">Đơn Giá</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm lg:text-sm font-semibold text-gray-900">Thành Tiền</th>
+              <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm lg:text-sm font-semibold text-gray-900">Ghi Chú</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {transactions.map((transaction) => (
               <tr key={transaction.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-gray-600">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm lg:text-sm text-gray-600">
                   {transaction.date.toLocaleDateString('vi-VN')}
                 </td>
-                <td className="px-6 py-4 text-gray-900">{transaction.productName}</td>
-                <td className="px-6 py-4">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm lg:text-sm text-gray-900">{transaction.productName}</td>
+                <td className="px-3 sm:px-6 py-3 sm:py-4">
                   {transaction.type === 'import' ? (
                     <div className="flex items-center gap-2 text-green-600">
-                      <ArrowUpCircle className="w-4 h-4" />
-                      <span>Nhập hàng</span>
+                      <ArrowUpCircle className="w-4 h-4 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm lg:text-sm">Nhập hàng</span>
                     </div>
                   ) : (
                     <div className="flex items-center gap-2 text-red-600">
-                      <ArrowDownCircle className="w-4 h-4" />
-                      <span>Xuất hàng</span>
+                      <ArrowDownCircle className="w-4 h-4 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm lg:text-sm">Xuất hàng</span>
                     </div>
                   )}
                 </td>
-                <td className="px-6 py-4 text-gray-900">{transaction.quantity}</td>
-                <td className="px-6 py-4 text-gray-600">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm lg:text-sm text-gray-900">{transaction.quantity}</td>
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm lg:text-sm text-gray-600">
                   {transaction.price.toLocaleString('vi-VN')}₫
                 </td>
-                <td className="px-6 py-4 text-gray-900">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm lg:text-sm text-gray-900">
                   {(transaction.quantity * transaction.price).toLocaleString('vi-VN')}₫
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600">{transaction.note}</td>
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm lg:text-sm text-gray-600">{transaction.note}</td>
               </tr>
             ))}
           </tbody>
